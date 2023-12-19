@@ -23,7 +23,7 @@ def login():
         else:
             flash('User does not exist', category ='invalid_entry')
 
-    return render_template("login.html", boolean=True)
+    return render_template("login.html", user=current_user )
 
 @auth.route('/logout')
 @login_required
@@ -39,8 +39,6 @@ def sign_up():
         lastName = request.form.get('lastName')
         password = request.form.get('password')
         confirmPassword = request.form.get('confirmPassword')
-
-        data = request.form.to_dict()
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -59,9 +57,9 @@ def sign_up():
             newUser = User(email=email, firstName=firstName, lastName=lastName, password=generate_password_hash(password, method='scrypt'))
             db.session.add(newUser)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(newUser, remember=True)
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
 
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)
