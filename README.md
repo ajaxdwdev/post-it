@@ -23,7 +23,7 @@ This full-stack web application allows users to create a personal account and ma
 
 - **Update Notes**: Users can edit the content of their existing notes.
 
-- **Delete Notes**: Unwanted notes can be easily deleted, and the application ensures confirmation to avoid accidental deletions.
+- **Delete Notes**: Unwanted notes can be easily deleted.
 
 ### Categorization
 
