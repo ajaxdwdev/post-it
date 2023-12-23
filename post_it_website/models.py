@@ -6,6 +6,7 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     noteHeading = db.Column(db.String(100))
     noteContent = db.Column(db.String(10000))
+    category = db.Column(db.String(10))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     userId = db.Column(db.Integer, db.ForeignKey('user.id'))
 
