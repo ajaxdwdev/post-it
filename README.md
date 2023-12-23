@@ -1,36 +1,47 @@
 # Post-It Notes Web App
+
 #### Video Demo: https://youtu.be/goXLDeRpzX4
+
 #### Description:
 
 ## Overview
 
 This full-stack web application allows users to create a personal account and manage their "post-it" notes from any internet-connected browser. It serves as a practical exercise for building a comprehensive web application.
 
-## Features
+### User Authentication
 
-- **User Authentication:** Users can create accounts, log in, and securely access their personalized notes.
+- **User Registration**: Users can create a new account by providing a valid email address, first name, last name, and a secure password.
+- **User Login**: Registered users can log in securely with their email and password.
 
-- **Create and Manage Notes:** Users can create, edit, and delete post-it notes with customizable titles and content.
+- **User Logout**: Users can log out of their accounts, ensuring the security of their sessions.
 
-- **Categorize Notes:** Each note can be categorized as Business, Social, or Important, providing organization and quick identification.
+### Note Management
 
-- **Responsive Design:** The application is designed to work seamlessly across various devices and screen sizes.
+- **Create Notes**: Users can create new digital notes with a title and description. These notes are stored securely in the database.
 
-## Technologies Used
+- **View Notes**: Users can view all their notes on the dashboard, organized by categories.
 
-- **Frontend:**
-  - HTML, CSS, JavaScript
-  - Bootstrap for responsive styling
-  - jQuery for dynamic frontend interactions
+- **Update Notes**: Users can edit the content of their existing notes.
 
-- **Backend:**
-  - Python with Flask framework
-  - SQLAlchemy for database interactions
-  - Flask-Login for user authentication
+- **Delete Notes**: Unwanted notes can be easily deleted, and the application ensures confirmation to avoid accidental deletions.
 
-- **Database:**
-  - SQLite for development
-  - Consider using a more robust database (e.g., PostgreSQL) for production.
+### Categorization
+
+- **Categorize Notes**: Each note can be categorized into different types such as Business, Social, or Important. Users can assign or update the category of each note.
+
+- **Category Color-coding**: The UI visually represents the categories with distinct colors, providing a quick overview.
+
+### Responsive UI
+
+- **Responsive Design**: The web application is designed to be responsive, ensuring a consistent and user-friendly experience across various devices and screen sizes.
+
+### Flash Messages
+
+- **Flash Messages**: Users receive informative flash messages for successful actions (e.g., creating a note) or error notifications (e.g., invalid input).
+
+### Modal for Adding Notes
+
+- **Add Notes Modal**: A modal is provided for users to conveniently add new notes. It includes fields for the note title and description.
 
 ## Project Structure
 
@@ -54,7 +65,3 @@ This full-stack web application allows users to create a personal account and ma
 3. Create, edit, or delete your post-it notes.
 4. Categorize notes for better organization.
 5. Log out to securely end your session.
-
-## Contribution
-
-Contributions are welcome! If you find a bug or have a feature request, please create an issue or submit a pull request.
