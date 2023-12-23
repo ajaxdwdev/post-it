@@ -1,7 +1,6 @@
-# YOUR PROJECT TITLE
+# Post-It Notes Web App
 #### Video Demo:  <URL HERE>
 #### Description:
-# Post-It Notes Web App
 
 ## Overview
 
