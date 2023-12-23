@@ -9,22 +9,6 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    '''
-    if request.method == 'POST':
-        ##note = request.form.get('note')
-        data = request.get_json()
-        note_Heading = data.get('noteHeading')
-        note_Content = data.get('noteContent')
-        if len(note_Heading or note_Content) < 1:
-            flash('Cannot post an empty note!', category='invalid_entry')
-        else:
-            ##new_note = Note(data=note, userId=current_user.id)
-            new_note= Note(noteHeading=note_Heading, noteContent=note_Content, userId=current_user.id)
-            db.session.add(new_note)
-            db.session.commit()
-            flash('Note added!', category='success')
-    ##return render_template("home.html", user=current_user)
-    '''
     return render_template("dashboard.html", user=current_user)
 
 @views.route('/delete-note', methods=['POST'])
@@ -61,4 +45,19 @@ def add_note():
 
     return jsonify({'message': 'Note added successfully!'})
     ##return render_template("dashboard.html", user=current_user)
+
+@views.route('/update-category', methods=['POST'])
+@login_required
+def update_category():
+    data = request.get_json()
+
+    note_id = data.get('noteId')
+    category = data.get('category')
+
+    note = Note.query.get(note_id)
+    if note and note.userId == current_user.id:
+        note.category = category
+        db.session.commit()
+    
+    return jsonify({'message': 'Category updated success'})
 

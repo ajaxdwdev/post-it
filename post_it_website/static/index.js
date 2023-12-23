@@ -27,26 +27,45 @@ $(function () {
   }
 
   function addLabelGroups() {
-    $('.category-selector .badge-group-item')
-      .off('click')
-      .on('click', function (event) {
-        event.preventDefault();
-        /* Act on the event */
-        var getclass = this.className;
-        var getSplitclass = getclass.split(' ')[0];
-        if ($(this).hasClass('badge-business')) {
-          $(this).parents('.single-note-item').removeClass('note-social');
-          $(this).parents('.single-note-item').removeClass('note-important');
-          $(this).parents('.single-note-item').toggleClass(getSplitclass);
-        } else if ($(this).hasClass('badge-social')) {
-          $(this).parents('.single-note-item').removeClass('note-business');
-          $(this).parents('.single-note-item').removeClass('note-important');
-          $(this).parents('.single-note-item').toggleClass(getSplitclass);
-        } else if ($(this).hasClass('badge-important')) {
-          $(this).parents('.single-note-item').removeClass('note-social');
-          $(this).parents('.single-note-item').removeClass('note-business');
-          $(this).parents('.single-note-item').toggleClass(getSplitclass);
-        }
+    $('.category-selector .badge-group-item').off('click');
+
+    $('.category-selector .badge-group-item').on('click', function (event) {
+      event.preventDefault();
+      /* Act on the event */
+      var getclass = this.className;
+      var getSplitclass = getclass.split(' ')[0];
+      var noteId = $(this).parents('.single-note-item').data('note-id');
+
+      if ($(this).hasClass('badge-business')) {
+        $(this).parents('.single-note-item').removeClass('note-social');
+        $(this).parents('.single-note-item').removeClass('note-important');
+        $(this).parents('.single-note-item').toggleClass(getSplitclass);
+        updateCategory(noteId, 'Business');
+      } else if ($(this).hasClass('badge-social')) {
+        $(this).parents('.single-note-item').removeClass('note-business');
+        $(this).parents('.single-note-item').removeClass('note-important');
+        $(this).parents('.single-note-item').toggleClass(getSplitclass);
+        updateCategory(noteId, 'Social');
+      } else if ($(this).hasClass('badge-important')) {
+        $(this).parents('.single-note-item').removeClass('note-social');
+        $(this).parents('.single-note-item').removeClass('note-business');
+        $(this).parents('.single-note-item').toggleClass(getSplitclass);
+        updateCategory(noteId, 'Important');
+      }
+    });
+  }
+
+  function updateCategory(noteId, category) {
+    fetch('/update-category', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ noteId: noteId, category: category }),
+    })
+      .then((_res) => {
+        console.log('Category updated successfully!');
+      })
+      .catch((error) => {
+        console.error('Error updating category:', error);
       });
   }
 
